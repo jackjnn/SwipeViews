@@ -11,31 +11,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val imagesList = listOf(
+            R.drawable.scrollpic1,
+            R.drawable.scrollpic2,
+            R.drawable.scrollpic3)
+
+        val adapter = ViewPagerAdapter(imagesList)
+        viewPager.adapter = adapter
     }
 }
 
-class ViewPagerAdapter(
-        private val imagesList: List<Int>
-) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>() {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerHolder {
-        val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_view_pager, parent, false)
-        return ViewPagerHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-
-        holder.itemView.ivSliderImage.setImageResource(imagesList[position])
-    }
-
-    override fun getItemCount(): Int {
-        return imagesList.size
-    }
-
-
-    class ViewPagerHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-    }
-}
